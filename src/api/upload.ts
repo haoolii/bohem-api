@@ -17,6 +17,8 @@ if (!fs.existsSync(UPLOAD_DIR)) {
 const allowedExtensions = ['.png', '.jpg', '.jpeg', '.gif'];
 
 router.post<{}, MessageResponse>("/", async (req, res) => {
+    console.log('process.env.VERCEL', process.env.VERCEL);
+    
     let file = req.files?.file;
 
     if (!file) {
