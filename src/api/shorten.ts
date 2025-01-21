@@ -1,33 +1,57 @@
 import express from "express";
+import dayjs from "dayjs";
 
 import MessageResponse, { StatusCode } from "../interfaces/MessageResponse";
+import { PostShortenBodySchema } from "../schema/shorten.schema";
 import { PostShortenBody } from "../types/shorten.types";
-import PosyShortenBodySchema from "../schema/PosyShortenBodySchema";
+
+import db from "../core/db";
+import { generateUniqueId } from "../core/core";
 
 const router = express.Router();
 
-router.get<{}, MessageResponse>("/", (req, res) => {
-  res.json({
-    message: "API - Shorten 👋🌎🌍🌏",
-    data: {},
-    code: StatusCode.SUCCESS,
-  });
-});
-
-router.post<{}, MessageResponse, PostShortenBody>("/", (req, res) => {
-  const parseResult = PosyShortenBodySchema.safeParse(req.body);
+router.post<{}, MessageResponse, PostShortenBody>("/", async (req, res) => {
+  const parseResult = PostShortenBodySchema.safeParse(req.body);
 
   if (!parseResult.success) {
-    return res.status(400).json({
+    return res.json({
       code: StatusCode.ERROR,
-      data: parseResult.error.errors,
+      data: null,
       message: "Invalid Input",
+      error: parseResult.error.errors
     });
   }
 
+  const uniqueId = await generateUniqueId()
+
+  const { original, prompt, password, passwordRequired, type, expireIn } = parseResult.data;
+
+  const record = await db.record.create({
+    data: {
+      uniqueId,
+      original,
+      prompt,
+      password,
+      passwordRequired,
+      type,
+      expireIn,
+      expireAt: dayjs().add(expireIn, 'millisecond').toISOString(),
+    }
+  })
+
   return res.json({
     code: StatusCode.SUCCESS,
-    data: parseResult,
+    data: {
+      uniqueId: record.uniqueId,
+      original: record.original,
+      prompt: record.prompt,
+      passwordRequired: record.passwordRequired,
+      type: record.type,
+      expireIn: record.expireIn,
+      expireAt: record.expireAt,
+      createdAt: record.createdAt,
+      updatedAt: record.updatedAt
+    },
     message: "Success",
   });
 });

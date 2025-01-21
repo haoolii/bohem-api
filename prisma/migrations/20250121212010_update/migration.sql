@@ -1,0 +1,9 @@
+/*
+  Warnings:
+
+  - The `isDeleted` column on the `Record` table would be dropped and recreated. This will lead to data loss if there is data in the column.
+
+*/
+-- AlterTable
+ALTER TABLE "Record" DROP COLUMN "isDeleted",
+ADD COLUMN     "isDeleted" BOOLEAN NOT NULL DEFAULT false;

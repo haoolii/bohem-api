@@ -1,5 +1,5 @@
 export type PostShortenBody = {
-    originalUrl: string;
+    original: string; // could be filename or url
     type: "image" | "video" | "url",
     passwordRequired: boolean;
     password: string;

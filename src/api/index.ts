@@ -4,6 +4,7 @@ import MessageResponse, { StatusCode } from "../interfaces/MessageResponse";
 import emojis from "./emojis";
 import shorten from "./shorten";
 import resolve from "./resolve";
+import upload from "./upload";
 
 const router = express.Router();
 
@@ -18,5 +19,6 @@ router.get<{}, MessageResponse>("/", (req, res) => {
 router.use("/emojis", emojis);
 router.use("/shorten", shorten);
 router.use("/resolve", resolve);
+router.use("/upload", upload);
 
 export default router;

@@ -5,6 +5,7 @@ export enum StatusCode {
 }
 export default interface MessageResponse<T = unknown> {
   message: string;
-  data: T;
+  data?: T | null;
   code: StatusCode;
+  error?: unknown;
 }

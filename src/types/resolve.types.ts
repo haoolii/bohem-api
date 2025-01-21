@@ -1,9 +1,9 @@
 export type GetResolveResponse = {
-  uid: string;
-  originalUrl?: string;
-  type: "image" | "video" | "url";
+  uniqueId: string;
+  original?: string;
+  type: string;
   passwordRequired: boolean;
-  prompt: string;
+  prompt: string | null;
   expireIn: number;
   expireAt: string;
   createdAt: string;
@@ -11,11 +11,11 @@ export type GetResolveResponse = {
 };
 
 export type GetResolveParams = {
-  uid: string;
+  uniqueId: string;
 };
 
 export type PostResolveParams = {
-  uid: string;
+  uniqueId: string;
 };
 
 export type PostResolveBody = {
@@ -23,11 +23,11 @@ export type PostResolveBody = {
 };
 
 export type PostResolveResponse = {
-  uid: string;
-  originalUrl: string;
-  type: "image" | "video" | "url";
+  uniqueId: string;
+  original?: string;
+  type: string;
   passwordRequired: boolean;
-  prompt: string;
+  prompt: string | null;
   expireIn: number;
   expireAt: string;
   createdAt: string;
