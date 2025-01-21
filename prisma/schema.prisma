@@ -21,8 +21,8 @@ model Record {
   password         String?
   passwordRequired Boolean  @default(false)
   type             String
-  expireIn         Int
-  expireAt         DateTime
+  expireIn         Int?
+  expireAt         DateTime?
   isDeleted        Boolean  @default(false)
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt

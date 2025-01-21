@@ -35,7 +35,7 @@ router.post<{}, MessageResponse, PostShortenBody>("/", async (req, res) => {
       passwordRequired,
       type,
       expireIn,
-      expireAt: dayjs().add(expireIn, 'millisecond').toISOString(),
+      expireAt: expireIn ? dayjs().add(expireIn, 'millisecond').toISOString() : null,
     }
   })
 

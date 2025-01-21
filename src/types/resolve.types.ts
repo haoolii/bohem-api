@@ -1,11 +1,11 @@
 export type GetResolveResponse = {
   uniqueId: string;
-  original?: string;
+  original?: string | null;
   type: string;
   passwordRequired: boolean;
   prompt: string | null;
   expireIn: number;
-  expireAt: string;
+  expireAt?: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -24,12 +24,12 @@ export type PostResolveBody = {
 
 export type PostResolveResponse = {
   uniqueId: string;
-  original?: string;
+  original?: string | null;
   type: string;
   passwordRequired: boolean;
   prompt: string | null;
   expireIn: number;
-  expireAt: string;
+  expireAt?: string | null;
   createdAt: string;
   updatedAt: string;
 };
