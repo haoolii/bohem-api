@@ -4,7 +4,7 @@ export type GetResolveResponse = {
   type: string;
   passwordRequired: boolean;
   prompt: string | null;
-  expireIn: number;
+  expireIn?: number | null;
   expireAt?: string | null;
   createdAt: string;
   updatedAt: string;
@@ -28,7 +28,7 @@ export type PostResolveResponse = {
   type: string;
   passwordRequired: boolean;
   prompt: string | null;
-  expireIn: number;
+  expireIn?: number | null;
   expireAt?: string | null;
   createdAt: string;
   updatedAt: string;

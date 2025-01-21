@@ -42,7 +42,7 @@ router.get<GetResolveParams, MessageResponse<GetResolveResponse>>(
           passwordRequired: record.passwordRequired,
           prompt: record.prompt,
           expireIn: record.expireIn,
-          expireAt: record.expireAt.toISOString(),
+          expireAt: record.expireAt?.toISOString(),
           createdAt: record.createdAt.toISOString(),
           updatedAt: record.updatedAt.toISOString()
         }
@@ -59,7 +59,7 @@ router.get<GetResolveParams, MessageResponse<GetResolveResponse>>(
         passwordRequired: record.passwordRequired,
         prompt: record.prompt,
         expireIn: record.expireIn,
-        expireAt: record.expireAt.toISOString(),
+        expireAt: record.expireAt?.toISOString(),
         createdAt: record.createdAt.toISOString(),
         updatedAt: record.updatedAt.toISOString()
       }
@@ -107,7 +107,7 @@ router.post<
       passwordRequired: record.passwordRequired,
       prompt: record.prompt,
       expireIn: record.expireIn,
-      expireAt: record.expireAt.toISOString(),
+      expireAt: record.expireAt?.toISOString(),
       createdAt: record.createdAt.toISOString(),
       updatedAt: record.updatedAt.toISOString()
     }
