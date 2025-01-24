@@ -6,5 +6,5 @@ export const PostShortenBodySchema = z.object({
     password: z.string().nullable(),
     passwordRequired: z.boolean(),
     type: z.enum(["image", "video", "url"]),
-    expireIn: z.number().int().positive(),
+    expireIn: z.number().int().positive().nullable().optional(),
 });
